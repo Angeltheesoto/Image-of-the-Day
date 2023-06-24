@@ -36,4 +36,20 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+// Check if user exists
+router.get("/:username", async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const existingUser = await User.findOne({ username: username });
+    if (existingUser) {
+      res.json({ exists: true });
+    } else {
+      res.json({ exists: false });
+    }
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 module.exports = router;

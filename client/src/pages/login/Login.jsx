@@ -12,8 +12,6 @@ const Login = () => {
   const password = useRef();
   const history = useNavigate();
 
-  const [test, setTest] = useState();
-
   const handleClick = async (e) => {
     e.preventDefault();
 
@@ -33,10 +31,49 @@ const Login = () => {
       console.log("Error during login: ", err);
     }
   };
+
   // !google login ---------------
-  let handleCallbackResponse = (response) => {
+  let handleCallbackResponse = async (response) => {
     // console.log("User Object", jwt_decode(response.credential));
-    setTest(jwt_decode(response.credential));
+    const decodedToken = jwt_decode(response.credential);
+    const name = decodedToken.email;
+    const newUserName = name.split("@")[0];
+    const googleUser = {
+      username: newUserName,
+      email: decodedToken.email,
+      password: "123456",
+      profilePicture: decodedToken.picture,
+    };
+    try {
+      try {
+        var isUser = await axios.get(`/api/users/${googleUser.username}`);
+      } catch (err) {
+        console.log("Error checking user exists: ", err);
+      }
+      // !This checks if a user exists then just log them in else create an account and log them in.
+      if (isUser) {
+        var registerResponse = await axios.post("/api/auth/login", {
+          username: googleUser.username,
+          password: googleUser.password,
+        });
+      } else {
+        var registerResponse = await axios.post("/api/auth/register", {
+          username: googleUser.username,
+          email: googleUser.email,
+          password: googleUser.password,
+          profilePicture: googleUser.profilePicture,
+        });
+      }
+
+      if (registerResponse.status === 200) {
+        console.log("Logged in successfully!", registerResponse.data.token);
+        const token = registerResponse.data.token;
+        setUser({ token: token });
+        history("/");
+      }
+    } catch (err) {
+      console.log("Error during login: ", err);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +91,6 @@ const Login = () => {
   }, []);
   // !google login ---------------
 
-  console.log(test);
   return (
     <div>
       <Form handleSubmit={handleClick} submitText={"Log In"} title="Log In">

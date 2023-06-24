@@ -13,7 +13,6 @@ const Register = () => {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useNavigate();
-  const [test, setTest] = useState();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -38,29 +37,6 @@ const Register = () => {
       alert("Passwords do not match!");
     }
   };
-
-  // !google login ---------------
-  let handleCallbackResponse = (response) => {
-    // console.log("User Object", jwt_decode(response.credential));
-    setTest(jwt_decode(response.credential));
-  };
-
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "53373563171-7l1u4rq4g7dndfjpsnlaa5k0m5v4i903.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
-
-    google.accounts.id.renderButton(document.getElementById("googleSignIn"), {
-      theme: "outline",
-      size: "large",
-    });
-  }, []);
-  // !google login ---------------
-
-  console.log(test);
 
   return (
     <div>
