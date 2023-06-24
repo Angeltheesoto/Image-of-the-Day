@@ -1,9 +1,10 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Form from "../../components/form/Form";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const Register = () => {
   const { user, setUser } = useContext(UserContext);
@@ -12,6 +13,7 @@ const Register = () => {
   const password = useRef();
   const passwordAgain = useRef();
   const history = useNavigate();
+  const [test, setTest] = useState();
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -37,6 +39,29 @@ const Register = () => {
     }
   };
 
+  // !google login ---------------
+  let handleCallbackResponse = (response) => {
+    // console.log("User Object", jwt_decode(response.credential));
+    setTest(jwt_decode(response.credential));
+  };
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id:
+        "53373563171-7l1u4rq4g7dndfjpsnlaa5k0m5v4i903.apps.googleusercontent.com",
+      callback: handleCallbackResponse,
+    });
+
+    google.accounts.id.renderButton(document.getElementById("googleSignIn"), {
+      theme: "outline",
+      size: "large",
+    });
+  }, []);
+  // !google login ---------------
+
+  console.log(test);
+
   return (
     <div>
       <Form handleSubmit={handleClick} submitText={"Log In"} title="Register">
@@ -50,7 +75,10 @@ const Register = () => {
           required
         />
       </Form>
-      <Link to="/login">LogIn</Link>
+      <p>
+        Have an account? <Link to="/login">LogIn</Link>
+      </p>
+      <div id="googleSignIn"></div>
     </div>
   );
 };
