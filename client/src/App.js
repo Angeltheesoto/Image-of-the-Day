@@ -1,7 +1,8 @@
-import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./index";
 import React, { useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/navbar/Navbar";
+import Nav from "./components/nav/Nav";
 import Footer from "./components/footer/Footer";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register.jsx";
@@ -10,12 +11,12 @@ import { UserContext } from "./context/UserContext";
 
 function App() {
   const { user, setUser } = useContext(UserContext);
-  console.log(user);
+
   return (
     <React.Fragment>
       <BrowserRouter>
-        <Navbar />
-        <div className="container">
+        <Nav />
+        <div className="app-container">
           <Routes>
             <Route path="/" element={user ? <Home /> : <Register />} />
             <Route path="/login" element={user ? <Home /> : <Login />} />

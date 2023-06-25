@@ -1,0 +1,44 @@
+.logo {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 2rem;
+  font-weight: bolder;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.nav-user {
+  height: fit-content;
+  width: fit-content;
+  text-align: center;
+  margin: 7px 0 0 0;
+}
+
+.nav-logout {
+  border: none;
+  padding: 5px 20px;
+  color: white;
+  border-radius: 30px;
+  font-size: 10px;
+  border: 1px solid transparent;
+  transition: 0.5s ease;
+}
+
+.nav-logout:hover {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  transition: 0.5s ease;
+}
+
+.bg-body-tertiary {
+  background-color: transparent !important;
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.nav-username {
+  color: white;
+}

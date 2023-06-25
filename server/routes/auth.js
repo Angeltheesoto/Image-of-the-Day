@@ -12,9 +12,7 @@ const GoogleStrategy = require("passport-google-oauth2").Strategy;
 const verifiedToken = require("../config/authMiddleware");
 
 router.get("/", (req, res) => {
-  res.send(
-    `This is the authorization route. <a href='/auth/google'>login with google</a>`
-  );
+  res.send(`This is the authorization route.`);
 });
 
 // ?GOOGLE Login/Register ----->

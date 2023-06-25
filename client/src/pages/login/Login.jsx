@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import Form from "../../components/form/Form";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
@@ -92,17 +92,15 @@ const Login = () => {
   // !google login ---------------
 
   return (
-    <div>
+    <div className="login-container">
       <Form handleSubmit={handleClick} submitText={"Log In"} title="Log In">
         <input type="text" placeholder="Username" ref={username} required />
         <input type="password" placeholder="Password" ref={password} required />
       </Form>
-      <a href="#" className="loginForgot">
-        Forgot Password
-      </a>
       <p>
         Don't have an account? <Link to="/register">Register</Link>
       </p>
+      <p>Or</p>
       <div id="googleSignIn"></div>
     </div>
   );

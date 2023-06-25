@@ -6,9 +6,62 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to top right, #000000, #2d3436);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+hr {
+  color: white !important;
+  width: 90%;
+  height: 10px;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.home-title {
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+}
+
+.home-photo-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.home-photo {
+  border-radius: 10px;
+}
+
+.footer-container {
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.login-container,
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  height: 50rem;
+}
+
+.home-spinner {
+  width: 15rem !important;
+  height: 15rem !important;
+  font-weight: bolder;
+  margin-top: 13rem;
+  color: rgba(255, 255, 255, 0.55);
 }
