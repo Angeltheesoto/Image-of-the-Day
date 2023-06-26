@@ -43,10 +43,10 @@ app.use("/api/secure-route", verifiedToken, (req, res) => {
 // }
 
 // !Vercel
-// Serve static files from the "client/build" directory
+// !Serve static files from the "client/build" directory
 // app.use(express.static(path.join(__dirname, "../client/build")));
 
-// Handle all other routes and serve the index.html file
+// !Handle all other routes and serve the index.html file
 // app.get("*", (req, res) => {
 //   res.sendFile(
 //     path.join(__dirname, "../client/build/index.html"),
