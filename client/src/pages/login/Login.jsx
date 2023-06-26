@@ -49,23 +49,31 @@ const Login = () => {
     };
     try {
       try {
-        var isUser = await axios.get(`/api/users/${googleUser.username}`);
+        var isUser = await axios.get(
+          `https://image-of-the-day.vercel.app/api/users/${googleUser.username}`
+        );
       } catch (err) {
         console.log("Error checking user exists: ", err);
       }
       // !This checks if a user exists then just log them in else create an account and log them in.
       if (isUser) {
-        var registerResponse = await axios.post("/api/auth/login", {
-          username: googleUser.username,
-          password: googleUser.password,
-        });
+        var registerResponse = await axios.post(
+          "https://image-of-the-day.vercel.app/api/auth/login",
+          {
+            username: googleUser.username,
+            password: googleUser.password,
+          }
+        );
       } else {
-        var registerResponse = await axios.post("/api/auth/register", {
-          username: googleUser.username,
-          email: googleUser.email,
-          password: googleUser.password,
-          profilePicture: googleUser.profilePicture,
-        });
+        var registerResponse = await axios.post(
+          "https://image-of-the-day.vercel.app/api/auth/register",
+          {
+            username: googleUser.username,
+            email: googleUser.email,
+            password: googleUser.password,
+            profilePicture: googleUser.profilePicture,
+          }
+        );
       }
 
       if (registerResponse.status === 200) {

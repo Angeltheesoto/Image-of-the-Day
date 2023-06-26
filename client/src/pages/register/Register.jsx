@@ -57,7 +57,9 @@ const Register = () => {
     };
     try {
       try {
-        var isUser = await axios.get(`/api/users/${googleUser.username}`);
+        var isUser = await axios.get(
+          `https://image-of-the-day.vercel.app/api/users/${googleUser.username}`
+        );
       } catch (err) {
         console.log("Error checking user exists: ", err);
       }
@@ -68,12 +70,15 @@ const Register = () => {
           password: googleUser.password,
         });
       } else {
-        var registerResponse = await axios.post("/api/auth/register", {
-          username: googleUser.username,
-          email: googleUser.email,
-          password: googleUser.password,
-          profilePicture: googleUser.profilePicture,
-        });
+        var registerResponse = await axios.post(
+          "https://image-of-the-day.vercel.app/api/auth/register",
+          {
+            username: googleUser.username,
+            email: googleUser.email,
+            password: googleUser.password,
+            profilePicture: googleUser.profilePicture,
+          }
+        );
       }
 
       if (registerResponse.status === 200) {
