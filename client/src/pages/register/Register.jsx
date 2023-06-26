@@ -14,8 +14,6 @@ const Register = () => {
   const passwordAgain = useRef();
   const history = useNavigate();
 
-  // https://image-of-the-day.vercel.app/
-
   const handleClick = async (e) => {
     e.preventDefault();
     if (password.current.value === passwordAgain.current.value) {
