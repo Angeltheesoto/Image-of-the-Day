@@ -14,15 +14,20 @@ const Register = () => {
   const passwordAgain = useRef();
   const history = useNavigate();
 
+  // https://image-of-the-day.vercel.app/
+
   const handleClick = async (e) => {
     e.preventDefault();
     if (password.current.value === passwordAgain.current.value) {
       try {
-        const response = await axios.post("/api/auth/register", {
-          username: username.current.value,
-          email: email.current.value,
-          password: password.current.value,
-        });
+        const response = await axios.post(
+          "https://image-of-the-day.vercel.app/api/auth/register",
+          {
+            username: username.current.value,
+            email: email.current.value,
+            password: password.current.value,
+          }
+        );
 
         if (response.status === 200) {
           console.log("Logged in successfully!", response.data.token);

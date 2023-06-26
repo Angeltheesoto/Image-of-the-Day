@@ -19,7 +19,10 @@ const Home = () => {
     // !Fetch username ------
     const fetchData = async (req, res) => {
       try {
-        let response = await axios.get("/api/secure-route", config);
+        let response = await axios.get(
+          "https://image-of-the-day.vercel.app/api/secure-route",
+          config
+        );
         setUsername(response.data.user.username);
       } catch (err) {
         console.log(err);

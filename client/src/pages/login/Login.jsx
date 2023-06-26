@@ -16,10 +16,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/api/auth/login", {
-        username: username.current.value,
-        password: password.current.value,
-      });
+      const response = await axios.post(
+        "https://image-of-the-day.vercel.app/api/auth/login",
+        {
+          username: username.current.value,
+          password: password.current.value,
+        }
+      );
 
       if (response.status === 200) {
         console.log("Logged in successfully!", response.data.token);
