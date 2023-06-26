@@ -28,7 +28,7 @@ const Register = () => {
         );
 
         if (response.status === 200) {
-          console.log("Logged in successfully!", response.data.token);
+          // console.log("Logged in successfully!", response.data.token);
           const token = response.data.token;
           setUser({ token: token });
           history("/");
@@ -83,7 +83,7 @@ const Register = () => {
       }
 
       if (registerResponse.status === 200) {
-        console.log("Logged in successfully!", registerResponse.data.token);
+        // console.log("Logged in successfully!", registerResponse.data.token);
         const token = registerResponse.data.token;
         setUser({ token: token });
         history("/");
