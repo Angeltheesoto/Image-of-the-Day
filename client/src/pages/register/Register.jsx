@@ -63,10 +63,13 @@ const Register = () => {
       }
       // !This checks if a user exists then just log them in else create an account and log them in.
       if (isUser) {
-        var registerResponse = await axios.post("/api/auth/login", {
-          username: googleUser.username,
-          password: googleUser.password,
-        });
+        var registerResponse = await axios.post(
+          "https://image-of-the-day.vercel.app/api/auth/login",
+          {
+            username: googleUser.username,
+            password: googleUser.password,
+          }
+        );
       } else {
         var registerResponse = await axios.post(
           "https://image-of-the-day.vercel.app/api/auth/register",
