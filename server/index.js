@@ -44,18 +44,18 @@ app.use("/api/secure-route", verifiedToken, (req, res) => {
 
 // !Vercel
 // !Serve static files from the "client/build" directory
-// app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 // !Handle all other routes and serve the index.html file
-// app.get("*", (req, res) => {
-//   res.sendFile(
-//     path.join(__dirname, "../client/build/index.html"),
-//     function (err) {
-//       if (err) {
-//         res.status(500).send(err);
-//       }
-//     }
-//   );
-// });
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../client/build/index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 app.listen(PORT, console.log(`Server started on PORT ${PORT}`));
